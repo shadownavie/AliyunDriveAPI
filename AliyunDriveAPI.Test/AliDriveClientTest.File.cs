@@ -21,7 +21,7 @@ public partial class AliDriveClientTest
     public async Task UploadTextFileAsync()
     {
         //6385d9c26a671772bcf246d3baf6c3419681c371
-        var res = await _client.UploadFileAsync(DriveId, "test.txt", Encoding.UTF8.GetBytes(DateTime.Now.ToString("😝yyyy/MM/dd HH:mm:ss😂")), "6385d9c26a671772bcf246d3baf6c3419681c371", Models.Types.CheckNameModeType.Overwrite);
+        var res = await _client.UploadFileAsync(DriveId, "test.txt", Encoding.UTF8.GetBytes(DateTime.Now.ToString("😝yyyy/MM/dd HH:mm:ss😂")), ParentFileId, Models.Types.CheckNameModeType.Overwrite);
         _fileId = res?.FileId;
         Assert.IsTrue(!string.IsNullOrEmpty(res.FileId));
     }

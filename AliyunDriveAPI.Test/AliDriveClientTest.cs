@@ -15,7 +15,7 @@ public partial class AliDriveClientTest
     //DriveId=JSON.parse(window.localStorage.getItem("token")).default_drive_id
 
     private string DriveId = "44882611";//default_drive_id:"44882611"
-    private string ParentFileId = "root";//"6383756f6adc12c6de134c738a44926556b2c915";
+    private string ParentFileId = "6385d9c26a671772bcf246d3baf6c3419681c371";//"6383756f6adc12c6de134c738a44926556b2c915";
 
     private string reftoken = "";
 
