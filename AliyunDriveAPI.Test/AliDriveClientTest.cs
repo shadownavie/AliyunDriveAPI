@@ -22,7 +22,7 @@ public partial class AliDriveClientTest
     [SetUp]
     public async void Setup()
     {
-        await this.Qrcode();
+ 
         //FileSystemWatcher fsw = new FileSystemWatcher();
         //fsw.Path = path;
         //fsw.IncludeSubdirectories = true;   //设置监控C盘目录下的所有子目录
