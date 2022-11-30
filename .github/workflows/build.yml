@@ -25,6 +25,8 @@ jobs:
         run: dotnet restore
       - name: Build
         run: dotnet build --configuration Release --no-restore
+      - name: ShowDir
+        run: dir
       - name: Upload Release Asset 	
         uses: svenstaro/upload-release-action@v2
         with:
