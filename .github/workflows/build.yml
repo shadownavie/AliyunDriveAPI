@@ -24,7 +24,10 @@ jobs:
       - name: Install dependencies
         run: dotnet restore
       - name: Build
-        run: dotnet build --configuration Release --no-restore
+        run: 
+          |
+          dotnet build --configuration Release --no-restore
+          dir
       - name: Upload Release Asset 	
         uses: svenstaro/upload-release-action@v2
         with:
