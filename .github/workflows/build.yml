@@ -26,7 +26,7 @@ jobs:
       - name: Build
         run: |
           dotnet build --configuration Release --no-restore
-          cd AliyunDriveAPI/bin/Release/
+          cd AliyunDriveAPI/bin/Release/netstandard2.1
           dir
       - name: Upload Release Asset 	
         uses: svenstaro/upload-release-action@v2
