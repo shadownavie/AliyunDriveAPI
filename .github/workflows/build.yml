@@ -1,0 +1,35 @@
+name: Publish1
+
+on: [push]
+
+jobs:
+  on-success:
+    runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Shanghai
+      PACKAGE_ID: AliyunDriveAPI
+    strategy:
+      matrix:
+        dotnet-version: ["6.0.x"]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v1.7.2
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+      - name: Process Text
+        run: |
+          sed -i "s/0.0.0/`cat ./$PACKAGE_ID/version.txt`-alpha/" ./$PACKAGE_ID/$PACKAGE_ID.csproj
+          sed -i "s/{GITHUB_TOKEN}/${{ secrets.GITHUB_TOKEN }}/" ./nuget.config
+      - name: Install dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+      - name: Upload Release Asset 	
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: ./$PACKAGE_ID/bin/Release/$PACKAGE_ID.`cat ./$PACKAGE_ID/version.txt`-alpha.dll
+          tag: ${{ github.ref }}
+          file_glob: true
+          prerelease: true
